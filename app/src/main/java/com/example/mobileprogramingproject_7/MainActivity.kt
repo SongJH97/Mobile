@@ -24,17 +24,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        Thread.sleep(3000L) //coroutine끝날때까지 3초 대기
+        Thread.sleep(3000L) //coroutine끝날때까지 3초 대기
+        DataManager.initData()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        Toast.makeText(this, "Data Load Complete", Toast.LENGTH_SHORT).show()
+        finish()
 
-
-        Handler().postDelayed({
-            DataManager.initData()
-            val intent = Intent(this, LoginActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-            Toast.makeText(this, "Data Load Complete", Toast.LENGTH_SHORT).show()
-            finish()
-        },DURATION)
+//        Handler().postDelayed({
+//            DataManager.initData()
+//            val intent = Intent(this, LoginActivity::class.java)
+////            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//            startActivity(intent)
+//            Toast.makeText(this, "Data Load Complete", Toast.LENGTH_SHORT).show()
+//            finish()
+//        },DURATION)
     }
 }
 
